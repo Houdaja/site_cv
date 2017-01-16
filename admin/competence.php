@@ -1,8 +1,5 @@
 <?php require '../connexion/connexion.php'; 
 
-
-
-
 if(isset($_POST['competence'])){ // On vérife si on a creer une nouvelle compétence
     if($_POST['competence']!= ''){//si comptence n'est pas vide
     $competence = addslashes($_POST['competence']);
@@ -33,7 +30,8 @@ if(isset($_GET['delete'])){
      $resultat = $sql->fetch();
 
  ?>
-    <title><?php echo $resultat['prenom'].' ' .$resultat['nom'];?> - Compétences </title>
+    <title><?php echo $resultat['prenom'].' ' .$resultat['nom'];?> - Compétences </title>    
+    <script src="https://use.fontawesome.com/30a190e011.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
 
@@ -43,22 +41,17 @@ if(isset($_GET['delete'])){
       		</header>
       		<h1 id="competence">Les compétences</h1>
             <div id="">
-                <h2>Connexion : déconnexion</h2>
                <?php //include("admin_menu.php"); ?><!-- FAUT CREER LA PAGE MENU -->
             </div>
 
             <div id="contenuPrincipal">
                 <div>
-                    <form action="competence.php" method="post">
-                        <table>
-                            <tr>
-                                <td>Compétences</td> 
-                                <td><input type="text" name="competence" id="competence" size="50" required></td>                           
-                            </tr>
-                            <tr>
-                                <td colspan="2"><input type="submit" value"Insérer une compétences"></td>
-                            </tr>
-                        </table>
+                    <form action="competence.php" method="post"> 
+                        <fieldset>
+                        <legend>Insertion d'une nouvelle compétence : </legend>
+                        <input type="text" name="competence" id="competence" size="20" required>                          
+                        <input type="submit" value"Insérer une compétences"><br><br>
+                        </fieldset>       
                     </form>
                 </div>
             </div>
@@ -68,17 +61,20 @@ if(isset($_GET['delete'])){
             $sql->execute();
             $nbr_comptences = $sql->rowCount();//affiche et compte les compétences
             ?>
-            <p>Il y a <?php echo $nbr_comptences; ?> compétences</p><!-- affiche les compétences -->
-            <table border="2" width="500">
+            <p id="nbr">Ci-dessous <?php echo $nbr_comptences; ?> compétences </p><!-- affiche les compétences -->
+            <table>
                 <caption>Liste des compétences</caption>
-                <thead>
-                    <th>compétences</th><br>
-                    <th>suppresion</th>
-                </thead>
+                <tr>
+                    <th>Compétences</th>
+                    <th colspan="2">Opérations</th>
+                </tr>
                 <tr>
                     <?php while($resultat = $sql->fetch()){ ?>
                     <td><?php echo $resultat['competence']; ?></td>
-                    <td><a href="?delete=<?php echo $resultat['id_competence'];?>">suppr</a></td><!--lien qui envoi la supprision de la ligne -->
+                    <td><a href="?delete=<?php echo $resultat['id_competence'];?>"><i class="fa fa-trash" aria-hidden="true"></i>
+                        </a></td><!--lien qui envoi la supprision de la ligne -->
+                    <td><a href="modif_competence.php?id_competence=<?php echo $resultat['id_competence'];?>"><i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a></td><!--lien qui envoi la supprision de la ligne -->
                 </tr>
                 <?php };?>
             </table>
