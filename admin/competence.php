@@ -1,5 +1,32 @@
-<?php require '../connexion/connexion.php'; 
+<?php require '../connexion/connexion.php'; ?>
+<?php 
+session_start();
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){//si la personne est connecté 
+    //et la valeur est bien celle de la page authentification
+        $id_utilisateur=$_SESSION['id_utilisateur'];
+        $prenom=$_SESSION['prenom'];
+        $nom=$_SESSION['nom'];
+        //echo $_SESSION['connexion']; vérification de la connexion
+}else{//l'utilisateur n'est pas connecté
+        header('location:authentification.php');
+}
 
+//pour se déconnecter
+if(isset($_GET['deconnect'])){
+    $_SESSION['connexion'] = ''; //on vide les variables de session
+    $_SESSION['id_utilisateur'] = '';
+    $_SESSION['prenom'] = '';
+    $_SESSION['nom'] = '';
+
+    unset($_SESSION['connexion']);//on supprime cette variable
+
+    session_destroy();//on detruit la session
+
+    header('location:../index.php');
+}
+
+?>
+<?php
 if(isset($_POST['competence'])){ // On vérife si on a creer une nouvelle compétence
     if($_POST['competence']!= ''){//si comptence n'est pas vide
     $competence = addslashes($_POST['competence']);
@@ -21,47 +48,26 @@ if(isset($_GET['delete'])){
 }
 
 ?>
-
-<html lang="fr">
-    <head>
-    <meta charset="utf-8">
-    <?php $sql = $pdoCV->query("SELECT * FROM t_utilisateur");
-
-     $resultat = $sql->fetch();
-
- ?>
-    <title><?php echo $resultat['prenom'].' ' .$resultat['nom'];?> - Compétences </title>    
-    <script src="https://use.fontawesome.com/30a190e011.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    </head>
-
-        <body>
-        	<header>
-            <!-- faire une entete -->
-      		</header>
-      		<h1 id="competence">Les compétences</h1>
-            <div id="">
-               <?php //include("admin_menu.php"); ?><!-- FAUT CREER LA PAGE MENU -->
-            </div>
-
-            <div id="contenuPrincipal">
-                <div>
-                    <form action="competence.php" method="post"> 
-                        <fieldset>
-                        <legend>Insertion d'une nouvelle compétence : </legend>
-                        <input type="text" name="competence" id="competence" size="20" required>                          
-                        <input type="submit" value"Insérer une compétences"><br><br>
-                        </fieldset>       
-                    </form>
-                </div>
-            </div>
-
+<?php include'haut.php';?>
+        <div class="contenuPrincipal">           
+            <h2 class="h2">Les compétences</h2>            
             <?php
             $sql = $pdoCV->query("SELECT * FROM t_competences");
             $sql->execute();
             $nbr_comptences = $sql->rowCount();//affiche et compte les compétences
             ?>
-            <p id="nbr">Ci-dessous <?php echo $nbr_comptences; ?> compétences </p><!-- affiche les compétences -->
+            <p class="nbr">Vous avez <?php echo $nbr_comptences; ?> compétences dans votre base de donnée.</p><!-- affiche les compétences -->
+            <div>
+                <form action="competence.php" method="post"> 
+                    <fieldset>
+                    <legend>Insertion d'une nouvelle compétence  </legend><br>
+                    <input type="text" name="competence" id="competence" size="20" required>                          
+                    <input type="submit" value"Insérer une compétences"><br><br>
+                    </fieldset>       
+                </form>
+            </div>
+         
+
             <table>
                 <caption>Liste des compétences</caption>
                 <tr>
@@ -78,11 +84,8 @@ if(isset($_GET['delete'])){
                 </tr>
                 <?php };?>
             </table>
+        </div>
                 
             
 
-           <footer>
-               <!-- faire le include du footer -->
-           </footer>
-        </body>
-    </html>
+<?php include'bas.php';?>

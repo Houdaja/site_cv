@@ -1,17 +1,37 @@
 <?php require '../connexion/connexion.php'; ?>
+<?php 
+session_start();
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){//si la personne est connecté 
+    //et la valeur est bien celle de la page authentification
+        $id_utilisateur=$_SESSION['id_utilisateur'];
+        $prenom=$_SESSION['prenom'];
+        $nom=$_SESSION['nom'];
+        //echo $_SESSION['connexion']; vérification de la connexion
+}else{//l'utilisateur n'est pas connecté
+        header('location:authentification.php');
+}
 
-<html lang="fr">
-    <head>
-    <meta charset="utf-8">
-    <title><?php echo $resultat['prenom'].' ' .$resultat['nom'];?> - Developpeur & Integrateur Web</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    </head>
+//pour se déconnecter
+if(isset($_GET['deconnect'])){
+    $_SESSION['connexion'] = ''; //on vide les variables de session
+    $_SESSION['id_utilisateur'] = '';
+    $_SESSION['prenom'] = '';
+    $_SESSION['nom'] = '';
 
-        <body>
-        	<header>
-      		</header>
+    unset($_SESSION['connexion']);//on supprime cette variable
 
-      		<div id="mainContent">
+    session_destroy();//on detruit la session
+
+    header('location:../index.php');
+}
+
+?>
+
+
+
+<?php include'haut.php';?>
+
+      		<div class="">
       		<h1 id="espaceAdmin">Espace administratif du site CV</h1>
             <?php
             $sql = $pdoCV->query("SELECT * FROM t_utilisateur");
@@ -22,7 +42,7 @@
             echo $resultat['etat_civil'].' '.$resultat['prenom'].' '.$resultat['nom'].'<br>';
             echo $resultat['pseudo'].'<br/>';
             echo $resultat['avatar'].'<br/>';
-            echo '<p>Née le '.$resultat['date_naissance'].'***'.$resultat['age'].' ans<p/><br/>';
+            echo '<p>Née le '.$resultat['date_naissance'].'<br>'.$resultat['age'].' ans<p/><br/>';
             echo $resultat['sexe'].'<br/>';
             echo $resultat['statut_marital'].'<br/>';
             echo $resultat['email'].'<br/>';
@@ -36,9 +56,6 @@
 
 
             ?>
-
-		
       		</div>
 
-        </body>
-    </html>
+<?php include'bas.php';?>

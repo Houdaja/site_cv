@@ -1,4 +1,31 @@
 <?php require '../connexion/connexion.php'; ?>
+<?php 
+session_start();
+if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){//si la personne est connecté 
+    //et la valeur est bien celle de la page authentification
+        $id_utilisateur=$_SESSION['id_utilisateur'];
+        $prenom=$_SESSION['prenom'];
+        $nom=$_SESSION['nom'];
+        //echo $_SESSION['connexion']; vérification de la connexion
+}else{//l'utilisateur n'est pas connecté
+        header('location:authentification.php');
+}
+
+//pour se déconnecter
+if(isset($_GET['deconnect'])){
+    $_SESSION['connexion'] = ''; //on vide les variables de session
+    $_SESSION['id_utilisateur'] = '';
+    $_SESSION['prenom'] = '';
+    $_SESSION['nom'] = '';
+
+    unset($_SESSION['connexion']);//on supprime cette variable
+
+    session_destroy();//on detruit la session
+
+    header('location:../index.php');
+}
+
+?>
 
 <?php
 //Gestion des contenus
@@ -19,30 +46,26 @@ $sql= $pdoCV->query("SELECT * FROM t_competences WHERE id_competence = '$id_comp
 $ligne_competence= $sql->fetch();
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset "utf-8">
-
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
-</head>
-<body>
-	<form action="modif_competence.php" method="POST">
-		<table width="200px" border="1">
-			<tr>
-				<th>Modification d'une compétence</th>				
-				<td>	
-				<input type="text" name="competence" size="50" value="<?php echo $ligne_competence['competence']; ?>" required>	
-				<input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">					
-				</td>
-			</tr>
-			<tr>	
-				<td colspan="2"><input type="submit" value="Mettre à jour"></td>
-			</tr>	
-		
-		</table>
-	</form>
+<?php include'haut.php';?>
+	<div class="contenuPrincipal">
+	<h2 class="h2"> Les compétences | modification </h2>
+		<form action="modif_competence.php" method="POST">
+		<legend>Modifier le champ souhaité : </legend>
+			<table class="tables" width="200px" border="1">
+				<tr>
+					<th>Compétence </th>				
+					<td>	
+					<input type="text" name="competence" size="50" value="<?php echo $ligne_competence['competence']; ?>" required>	
+					<input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">					
+					</td>
+				</tr>
+				<tr>	
+					<td colspan="2"><input type="submit" value="Mettre à jour"></td>
+				</tr>	
+			
+			</table>
+		</form>
+	</div>
 	<!-- Fin du form modification -->
-</body>
-</html>
+
+<?php include'bas.php';?>
