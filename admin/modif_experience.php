@@ -36,12 +36,13 @@ if(isset($_POST['titre_e'])){
 	$titre_e = addslashes($_POST['titre_e']);
 	$sous_titre_e = addslashes($_POST['sous_titre_e']);
 	$dates_e = addslashes($_POST['dates_e']);
-	$description_e = addslashes($_POST['description_e']);
+    $description_e = addslashes($_POST['description_e']);
+	$img_e = addslashes($_POST['img_e']);
 	$id_experience = $_POST['id_experience'];
 	$utilisateur_id = $_POST['utilisateur_id'];
 
 	$pdoCV-> exec("UPDATE t_experiences SET titre_e='$titre_e', sous_titre_e='$sous_titre_e', 
-		dates_e='$dates_e', description_e='$description_e' WHERE id_experience='$id_experience'");
+		dates_e='$dates_e', description_e='$description_e' , img_e='$img_e'  WHERE id_experience='$id_experience'");
 
 		header('location:../admin/experience.php');//Le header pr revenir a la lste des experiences de l'utilisateur
 		exit();
@@ -77,7 +78,11 @@ $ligne_experience = $sql->fetch();
 						<script>CKEDITOR.replace('editor1');</script>
                         </td>
 
-                    </tr>			
+                    </tr>	                            
+                    <tr>    
+                        <td>Logo</td> 
+                        <td><input type="text" name="img_e" value="<?= $ligne_experience['img_e']; ?>" required></td>                           
+                    </tr>       		
 					<tr>
                         <td>utilisateur_id</td> 
                         <td><input hidden name="utilisateur_id" value="<?= $ligne_experience['utilisateur_id']; ?>" ></td>                           
