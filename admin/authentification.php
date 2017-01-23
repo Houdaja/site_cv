@@ -14,7 +14,7 @@ if(isset($_POST['connexion'])){//['connexion'] du name du submit du form ci dess
 
     	if($nbr_utilisateur==0){//on ne le trouve pas
     	$msg_connexion_err="Erreur d'authentification !";
-    	}else{//on trouve l'email et le mdp c'estbien il est bien inscrit
+    	}else{//on trouve l'email et le mdp c'est bien il est bien inscrit
     		$ligne = $sql->fetch();//pour retrouver son nom et prenom
     		
 		$_SESSION['connexion'] = 'connecté';
@@ -41,28 +41,14 @@ if(isset($_POST['connexion'])){//['connexion'] du name du submit du form ci dess
 </head>
 
 <body id="bodyAuthentif">
-	<div><p>Bonjour Houda, Veuillez vous identifier.</p></div>
-	<div id="formAuthentif">
-	<div id="img">
-		<img id="avatar" src="../img/avatar.png" width="100" height="100">
-	</div>
-				
-		<form  action="authentification.php" method="POST">
-			
-				<legend>Je m'identifie</legend>
-					
-				<label for="pseudo">Pseudo</label>
-				<input type="text" name="pseudo" placeholder="Rentrez votre pseudo" tabindex="1" size="35" aria-requierd="true">
-				<label for="mdp">Mot de passe</label>
-				<input type="password" name="mdp" required tabindex="2" size="10" maxlength="50">
-			
-			<input type="reset" tabindex="3" value="Effacer" >
-			<input name="connexion" type="submit" tabindex="4" value="Me connecter" >
-			<p><a href="#">J'ai oublier mon mot de passe</a></p>
-		</form>	
-
-		
-	</div>
-
+<div class="login">
+	<h1>Veuillez vous identifier.</h1>
+    <form  action="authentification.php" method="POST">		
+			<input type="text" name="pseudo" placeholder="Rentrez votre pseudo" tabindex="1" size="35" aria-requierd="true">
+			<input type="password" name="mdp" placeholder="Rentrez votre mot de passe"required tabindex="2" size="10" maxlength="50">     
+        	<button type="submit" name="connexion" class="btn btn-primary btn-block btn-large" value="Me connecter">Connexion</button>
+        	<p><a href="#">J'ai oublier mon mot de passe</a></p>
+    </form>
+</div>
 </body>
 </html>

@@ -13,6 +13,7 @@
 	<script src="../ckeditor/ckeditor.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title><?php echo $resultat['prenom'].' ' .$resultat['nom'];?> - Developpeur & Integrateur Web</title>
 
 </head>

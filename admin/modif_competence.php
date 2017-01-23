@@ -33,8 +33,9 @@ if(isset($_GET['deconnect'])){
 	if(isset($_POST['competence'])){// par le nom du premier input
 		
 		$competence = addslashes($_POST['competence']);
+		$niveau = addslashes($_POST['niveau']);
 		$id_competence = $_POST['id_competence'];
-		$pdoCV->exec("UPDATE t_competences SET competence='$competence' WHERE id_competence='$id_competence'");
+		$pdoCV->exec("UPDATE t_competences SET competence='$competence', niveau='$niveau' WHERE id_competence='$id_competence'");
 
 			header('location: ../admin/competence.php'); //le header location pour revenir à la liste des compétences de l'utilisateur.
 		exit();	
@@ -54,8 +55,10 @@ $ligne_competence= $sql->fetch();
 			<table class="tables" width="200px" border="1">
 				<tr>
 					<th>Compétence </th>				
+					<th>Niveau</th>				
 					<td>	
 					<input type="text" name="competence" size="50" value="<?php echo $ligne_competence['competence']; ?>" required>	
+					<input type="text" name="niveau" size="50" value="<?php echo $ligne_competence['niveau']; ?>" required>	
 					<input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">					
 					</td>
 				</tr>

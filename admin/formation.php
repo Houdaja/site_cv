@@ -1,5 +1,4 @@
-<?php require '../connexion/connexion.php'; ?>
-  
+<?php require '../connexion/connexion.php'; ?>  
 <?php 
 session_start();
 if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){//si la personne est connecté 
@@ -26,24 +25,23 @@ if(isset($_GET['deconnect'])){
     header('location:../index.php');
 }
 
-?>    
 
-<?php
+?>
+<?php //Insertion d'une formation
 if(isset($_POST['titre_f'])){ // On vérife si on a creer une nouvelle experience
-    if($_POST['titre_f']!= '' && $_POST['sous_titre_f']!= ''  && $_POST['dates_f']!= '' && $_POST['description_f']!= ''  
-     && $_POST['utilisateur_id']){//si experience n'est pas vide
+    if($_POST['titre_f']!= '' && $_POST['sous_titre_f']!=''  && $_POST['dates_f']!= '' &&  $_POST['description_f']!= ''){//si experience n'est pas vide
     $titre_f = addslashes($_POST['titre_f']);
     $sous_titre_f = addslashes($_POST['sous_titre_f']);
     $dates_f= addslashes($_POST['dates_f']);
     $description_f= addslashes($_POST['description_f']);
-    $t_utilisateur_id = addslashes($_POST['utilisateur_id']);
     
-   $insert = $pdoCV->exec(" INSERT INTO t_formations VALUES (NULL,'$titre_f', '$sous_titre_f' , '$dates_f', '$description_f','$utilisateur_id') ");
+   $pdoCV->exec(" INSERT INTO t_formations VALUES (NULL,'$titre_f', '$sous_titre_f' , '$dates_f', '$description_f', '1') ");
         header("location:../admin/formation.php");
         exit();
     }// on ferle le if
 }//on ferme le isset
 
+/*pour supprimer une formation*/
 if(isset($_GET['delete'])){
     $sql = 'DELETE FROM t_formations WHERE id_formation = "' . $_GET['delete'] . '"';
     $resultat = $pdoCV -> query($sql);
@@ -51,16 +49,19 @@ if(isset($_GET['delete'])){
 }
 
 ?> 
-
-<?php 
- include'haut.php';?>
-
+<?php include'haut.php';?>
             <div class="contenuPrincipal">
                 <h2 class="h2">Les formations</h2>         
+                <?php
+                $sql = $pdoCV->query("SELECT * FROM t_formations");
+                $sql->execute();
+                $nbr_formation = $sql->rowCount();//compte les lignes
+                ?>
+                <p class="nbr">Ci-dessous <?php echo $nbr_formation; ?> formation</p>
                 <form action="formation.php" method="post">
                     <fieldset>
                     <legend>Insertion d'une nouvelle formation </legend>
-                        <table width="200px" border="">
+                        <table class="table-bordered">
                             <tr>                    
                                 <td>Titre formation</td> 
                                 <td><input type="text" name="titre_f" size="50" value="" required></td>                           
@@ -77,11 +78,7 @@ if(isset($_GET['delete'])){
                                 <td>Description</td> 
                                 <td><textarea id="editor1" name="description_f" value="" size="100" cols="80" rows="10" required></textarea>
                                 <script>CKEDITOR.replace('editor1');</script></td>                          
-                            </tr>
-                            <tr>
-                                <td>utilisateur_id</td> 
-                                <td><input type="text" name="utilisateur_id" value="" required></td>                           
-                            </tr>
+                            </tr>                
                             <tr>
                                 <td colspan="2"><input type="submit" value"Insérer une formation"></td>
                             </tr>
@@ -89,20 +86,13 @@ if(isset($_GET['delete'])){
                     </fieldset>               
                 </form>
 
-                <?php
-                $sql = $pdoCV->query("SELECT * FROM t_formations");
-                $sql->execute();
-                $nbr_formation = $sql->rowCount();//compte les lignes
-                ?>
-                <p class="nbr">Ci-dessous <?php echo $nbr_formation; ?> formation</p>
-                <table border="2" width="500">
+                <table class="table-bordered">
                     <caption>Liste des formations</caption>
                     <tr>
                         <th>Titre experience</th>
                         <th>Sous-titre experience</th>
                         <th>Date</th>
                         <th>Description</th>
-                        <th>Utilisateur_id</th>
                         <th colspan="2">Opérations</th>
                     </tr>
                     <tr>
@@ -113,8 +103,7 @@ if(isset($_GET['delete'])){
                         <td><?php echo $resultat['titre_f']; ?></td>                      
                         <td><?php echo $resultat['sous_titre_f']; ?></td>
                         <td><?php echo $resultat['dates_f']; ?></td>                 
-                        <td><?php echo $resultat['description_f']; ?></td>                   
-                        <td><?php echo $resultat['utilisateur_id']; ?></td>                  
+                        <td><?php echo $resultat['description_f']; ?></td>                                   
                         <td><a href="formation.php?delete=<?php echo $resultat['id_formation'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td><br><!-- POUR SUPPRIMER LA LIGNE A FAIRE -->
                         <td><a href="modif_formation.php?id_formation=<?php echo $resultat['id_formation'];?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td><!-- POUR SUPPRIMER LA LIGNE A FAIRE -->
                     </tr>

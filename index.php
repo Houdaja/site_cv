@@ -4,12 +4,21 @@
 $sql = $pdoCV->query("SELECT * FROM t_utilisateur");
 $utilisateur = $sql->fetch();
 
-$sql = $pdoCV->query("SELECT * FROM t_experiences ORDER BY ordre_e ASC");
+$sql = $pdoCV->query("SELECT * FROM t_experiences");
 $experience = $sql->fetchAll();
 
 $sql = $pdoCV->query("SELECT * FROM t_formations");
 $formation = $sql->fetchAll();
 ?>
+
+
+<?php
+  //COMPETENCES 
+    $sql_comp = $pdoCV->query("SELECT * FROM t_competences");
+    $sql_comp -> execute();
+    $nb_comp= $sql_comp->rowCount();
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +45,7 @@ $formation = $sql->fetchAll();
 
     <!-- Theme CSS -->
     <link href="front/css/agency.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="front/css/styleFront.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,7 +85,7 @@ $formation = $sql->fetchAll();
                         <a class="page-scroll" href="#portfolio">Compétences</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">Formations</a>
+                        <a class="page-scroll" href="#formation">Formations</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#interet">Intérêts</a>
@@ -93,10 +103,17 @@ $formation = $sql->fetchAll();
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="intro-text">
-                <div class="intro-heading"><?php echo $utilisateur['prenom'].' ' .$utilisateur['nom'];?></div>
-                <div class="intro-lead-in">Developpeuse & Intégratrice Web</div>
-                <a href="#services" class="page-scroll btn btn-xl">En savoir plus</a>
+            <div class="intro-text row">
+                <div class="intro-heading col-lg-7 col-lg-offset-5"><?php echo $utilisateur['prenom'].' ' .$utilisateur['nom'];?></div>
+                <div class="intro-lead-in col-lg-7 col-lg-offset-5 text-left">
+                    
+                    <div class="sp"><span >Développeuse</span></div>                 
+                    <div class="sp"><span >Intégratrice</span></div>
+                    <div class="sp"><span >Web</span></div>
+                </div>
+                <div>   
+                <a href="#services" class="page-scroll btn btn-xl" >En savoir plus</a>
+                </div>
             </div>
         </div>
     </header>
@@ -129,11 +146,7 @@ $formation = $sql->fetchAll();
             <div class="row">
                 <div class="col-lg-12">
                     <ul class="timeline">
-
-
-
-
-                    <?php 
+                   <?php 
                     $i=0;
                     while($i<count($experience)){
                             ?><li <?php if (($i % 2) == 0)
@@ -154,9 +167,16 @@ $formation = $sql->fetchAll();
                             $i++;
                     }                        
                      ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+
+
  <!-- Mes compétences -->
-  
-    <section id="portfolio">
+     <section id="portfolio" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -164,32 +184,39 @@ $formation = $sql->fetchAll();
                     <h3 class="section-subheading text-muted">Je m'adapte et m'intègre à tout type de situations.</h3>
                 </div>
             </div>
-      <div class="row text-center">
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <span class="fa-stack fa-4x">
                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Front-end</h4>
-                <p class="text-muted">HTML / CSS / Boostrap </p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
+                    </span>
+                    <h4 class="service-heading">Front-end</h4>
+                    <p class="text-muted">HTML / CSS / Boostrap </p>
+                    </div>
+                <div class="col-md-6">
+                    <span class="fa-stack fa-4x">
                     <i class="fa fa-circle fa-stack-2x text-primary"></i>
                     <i class="fa fa-spinner fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Back-end</h4>
-                <p class="text-muted">PHP / MySQL</p>
-            </div>           
-        </div>   
+                    </span>
+                    <h4 class="service-heading">Back-end</h4>
+                    <p class="text-muted">PHP / MySQL</p>
+                </div>           
+            </div>
+            <div class="col-lg-6 col-lg-offset-3" >
+            <?php
+            while ($resultat=$sql_comp->fetch()){
+            echo '<tr><td>'.$resultat['competence'].' <div class="progress"><div class="progress-bar progress-bar-success" style="width: '.$resultat['niveau'].'%;"></div></div></td></tr>';
+            }?>
+            </div>
+        </div> 
     </section>
 
     <!-- Mes formations -->
-    <section id="formation">
+    <section id="formation" class="bg-light-gray">
         <div class="container">
              <div class="row">
                 <div class="col-lg-12 text-center">
-                 <span class="fa-stack fa-4x">
+                    <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
                     </span>
@@ -202,7 +229,7 @@ $formation = $sql->fetchAll();
                 $i=0;
                 while($i<count($formation)){?>
                 <div class="col-md-6">
-                <h4 class="service-heading"><?= $formation[$i]['titre_f'].$formation[$i]['sous_titre_f']; ?></h4>
+                <h4 class="service-heading"><?= $formation[$i]['titre_f'].' - '.$formation[$i]['sous_titre_f']; ?></h4>
                 <p class="text-muted"><?= $formation[$i]['dates_f'].'<br>'.$formation[$i]['description_f'];?></p>
                 </div>
                  <?php
@@ -214,13 +241,82 @@ $formation = $sql->fetchAll();
         </div>
     </section>
 
+ <!-- Mes interets -->
+     <section id="interet" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Intérêts</h2>
+                    <h3 class="section-subheading text-muted">Curieuse - Passionnée - Aventurière</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-camera fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Photographie</h4>
+                    <p class="text-muted">J'aime immortaliser un moment que la nature nous offre.</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-trophy fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Sport</h4>
+                    <p class="text-muted">Basket-ball en club / Athlétisme</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Cuisine</h4>
+                    <p class="text-muted">Essayer de nouvelles recettes, mijoter de petits plats et séduire les papilles de mes convives.</p>
+                </div>  
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-film fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Cinéma</h4>
+                    <p class="text-muted">S'interroger sur un thriller, moment d'émotion avec un film romantique ou  retomber en enfance avec un disney.</p>
+                </div>              
+            </div>
+            <div class="col-lg-6 col-lg-offset-3" >
+            <?php
+            while ($resultat=$sql_comp->fetch()){
+            echo '<tr><td>'.$resultat['competence'].' <div class="progress"><div class="progress-bar progress-bar-success" style="width: '.$resultat['niveau'].'%;"></div></div></td></tr>';
+            }?>
+            </div>
+        </div> 
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading">Contact</h2>
+                    <h3 class="section-subheading text-muted">Besoin d'un devis pour un projet Web ?</h3>
                 </div>
             </div>
             <div class="row">
@@ -229,28 +325,28 @@ $formation = $sql->fetchAll();
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Votre nom *" id="name" required data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <input type="email" class="form-control" placeholder="Votre email *" id="email" required data-validation-required-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="tel" class="form-control" placeholder="Vos coordonnées téléphonique *" id="phone" required data-validation-required-message="Please enter your phone number.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <textarea class="form-control" placeholder="Votre message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Send Message</button>
+                                <button type="submit" class="btn btn-xl">Envoyer</button>
                             </div>
                         </div>
                     </form>

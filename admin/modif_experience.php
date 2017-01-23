@@ -39,7 +39,7 @@ if(isset($_POST['titre_e'])){
     $description_e = addslashes($_POST['description_e']);
 	$img_e = addslashes($_POST['img_e']);
 	$id_experience = $_POST['id_experience'];
-	$utilisateur_id = $_POST['utilisateur_id'];
+	
 
 	$pdoCV-> exec("UPDATE t_experiences SET titre_e='$titre_e', sous_titre_e='$sous_titre_e', 
 		dates_e='$dates_e', description_e='$description_e' , img_e='$img_e'  WHERE id_experience='$id_experience'");
@@ -59,7 +59,7 @@ $ligne_experience = $sql->fetch();
 		<div>
 			<form action="modif_experience.php" method="POST">
 				<legend>Modifier le champ souhaité : </legend>
-				<table width="200px" border="">
+				<table class="table-bordered">
                     <tr>                    
                         <td>Titre experience</td> 
                         <td><input type="text" name="titre_e" value="<?= $ligne_experience['titre_e']; ?>" required></td>                           
@@ -82,15 +82,9 @@ $ligne_experience = $sql->fetch();
                     <tr>    
                         <td>Logo</td> 
                         <td><input type="text" name="img_e" value="<?= $ligne_experience['img_e']; ?>" required></td>                           
-                    </tr>       		
-					<tr>
-                        <td>utilisateur_id</td> 
-                        <td><input hidden name="utilisateur_id" value="<?= $ligne_experience['utilisateur_id']; ?>" ></td>                           
-                    </tr>
-                    
+                    </tr>       		                    
 				</table>
-                    	
-					<input hidden name="id_experience" value="<?= $ligne_experience['id_experience']; ?>">
+                    <input hidden name="id_experience" value="<?php echo $ligne_experience['id_experience']; ?>">                   	
 					<input type="submit" value="mettre à jour">
                     		
 			</form>

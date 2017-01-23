@@ -77,10 +77,7 @@ $ligne_formation = $sql->fetch();
                         </td>
 
                     </tr>			
-					<tr>
-                        <td>utilisateur_id</td> 
-                        <td><input type="text" name="utilisateur_id" value="<?= $ligne_formation['utilisateur_id']; ?>" required></td>                           
-                    </tr>
+					
                     
 				</table>
                     	

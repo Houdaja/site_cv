@@ -28,8 +28,7 @@ if(isset($_GET['deconnect'])){
 ?>    
 <?php
 if(isset($_POST['titre_e'])){ // On vérife si on a creer une nouvelle experience
-    if($_POST['titre_e']!= '' && $_POST['sous_titre_e']!= ''  && $_POST['dates_e']!= '' && $_POST['description_e']!= '' && $_POST['img_e']!='' 
-    ){//si experience n'est pas vide
+    if($_POST['titre_e']!= '' && $_POST['sous_titre_e']!='' && $_POST['dates_e']!='' && $_POST['description_e']!='' && $_POST['img_e']!=''){//si experience n'est pas vide
     $titre_e = addslashes($_POST['titre_e']);
     $sous_titre_e = addslashes($_POST['sous_titre_e']);
     $dates_e = addslashes($_POST['dates_e']);
@@ -37,7 +36,7 @@ if(isset($_POST['titre_e'])){ // On vérife si on a creer une nouvelle experienc
     $img_e = addslashes($_POST['img_e']);
     
     
-   $insert = $pdoCV->exec(" INSERT INTO t_experiences VALUES (NULL,'$titre_e', '$sous_titre_e' , '$dates_e', '$description_e', $img_e', '1') ");
+   $pdoCV->exec(" INSERT INTO t_experiences VALUES (NULL, '$titre_e', '$sous_titre_e', '$dates_e', '$description_e', $img_e', '1') ");
         header("location:../admin/experience.php");
         exit();
     }// on ferle le if
@@ -63,7 +62,7 @@ if(isset($_GET['delete'])){
                 <form action="experience.php" method="post" action="experience.php">
                     <fieldset>
                     <legend>Insertion d'une nouvelle experience </legend>
-                        <table width="200px" border="">
+                        <table  class="table-bordered">
                             <tr>                    
                                 <td>Titre experience</td> 
                                 <td><input type="text" name="titre_e" size="50" value="" required></td>                           
@@ -93,30 +92,28 @@ if(isset($_GET['delete'])){
                     </fieldset>               
                 </form>
 
-                <table border="2" width="500">
+                <table class="table-bordered">
                     <caption>Liste des expériences</caption>
                     <tr>
-                        <th>Titre experience</th>
-                        <th>Sous-titre experience</th>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Logo</th>
-                        <th>Utilisateur_id</th>
-                        <th colspan="2">Opérations</th>
+                        <th  class="text-center">Titre experience</th>
+                        <th class="text-center">Sous-titre experience</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Description</th>
+                        <th class="text-center">Logo</th>
+                        <th class="text-center" colspan="2">Opérations</th>
                     </tr>
                     <tr>
                         <?php while($resultat = $sql->fetch()){ ?>
                         
                     </tr>
                     <tr>
-                        <td><?php echo $resultat['titre_e']; ?></td>                      
-                        <td><?php echo $resultat['sous_titre_e']; ?></td>
-                        <td><?php echo $resultat['dates_e']; ?></td>                 
-                        <td><?php echo $resultat['description_e']; ?></td>                   
-                        <td><?php echo $resultat['img_e']; ?></td>                   
-                        <td><?php echo $resultat['utilisateur_id']; ?></td>                  
-                        <td><a href="experience.php?delete=<?php echo $resultat['id_experience'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td><br><!-- POUR SUPPRIMER LA LIGNE A FAIRE -->
-                        <td><a href="modif_experience.php?id_experience=<?php echo $resultat['id_experience'];?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td><!-- POUR SUPPRIMER LA LIGNE A FAIRE -->
+                        <td ><?php echo $resultat['titre_e']; ?></td>                      
+                        <td ><?php echo $resultat['sous_titre_e']; ?></td>
+                        <td ><?php echo $resultat['dates_e']; ?></td>                 
+                        <td ><?php echo $resultat['description_e']; ?></td>           
+                        <td ><?php echo $resultat['img_e']; ?></td>                       
+                        <td ><a href="experience.php?delete=<?php echo $resultat['id_experience'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td><br><!-- POUR SUPPRIMER LA LIGNE A FAIRE -->
+                        <td class="text-center"><a href="modif_experience.php?id_experience=<?php echo $resultat['id_experience'];?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td><!-- POUR SUPPRIMER LA LIGNE A FAIRE -->
                     </tr>
                     <?php };?>
                 </table>

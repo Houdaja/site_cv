@@ -1,0 +1,74 @@
+
+header{
+	background-image: url(../img/font.jpg);
+	color: #fed136;
+	font-weight: bolder;
+
+}
+
+.intro-heading{
+	float: right;
+
+}
+header .intro-text{
+	padding-bottom: 400px;
+}
+
+header .intro-lead-in{
+	float: left;
+
+}
+
+
+.navbar-custom .nav li a, .navbar-custom .navbar-toggle {
+  
+    color: #DD5322;
+    font-size:20px;
+    font-weight: bolder;
+
+  
+
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+margin-left: -80px;
+color: #DD5322;
+}
+
+
+*::-moz-selection {
+    text-shadow: none;
+    background: #fed136;
+    color: white;
+}
+
+.btn-xl {
+    color:#DF5521;
+    background-color: transparent;
+    border-color: #fed136;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 20px 40px;
+    margin-top: 80px;
+    margin-right:400px;
+}
+
+
+.intro-lead-in {
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-style: italic;
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 25px;
+
+    /* background-color: white;
+    background-color: #CCCCCC; */
+    color: #CCCCCC;
+    /* background: #fed136; */
+    border-radius: 10px;
+    color: #DD5322;
+}
+
+.sp{
+	padding-bottom: 15px;
+}
