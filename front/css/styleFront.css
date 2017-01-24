@@ -1,21 +1,30 @@
 
-header{
-	background-image: url(../img/font.jpg);
+
+
+/*header{
+	background-image: url(../img/frontcv.jpg);
+}*/
+
+header {
+    background: none;
 	color: #fed136;
 	font-weight: bolder;
-
 }
 
 .intro-heading{
-	float: right;
+   /*  float: right;
+   margin-left: 170px; */
 
 }
 header .intro-text{
-	padding-bottom: 400px;
+/*     padding-bottom: 400px; */
+
+
 }
 
 header .intro-lead-in{
-	float: left;
+/*     float: left; */
+
 
 }
 
@@ -44,13 +53,15 @@ color: #DD5322;
 
 .btn-xl {
     color:#DF5521;
-    background-color: transparent;
+    background-color: #222222;
     border-color: #fed136;
     border-radius: 5px;
     font-size: 18px;
     padding: 20px 40px;
     margin-top: 80px;
-    margin-right:400px;
+    margin-right:450px;
+    margin-left: 6  0px;
+    width:250px;
 }
 
 
@@ -71,4 +82,81 @@ color: #DD5322;
 
 .sp{
 	padding-bottom: 15px;
+
+}
+
+h2{
+    color:#E76B22;
+}
+
+h3 .section-subheading{
+    color: #222222;
+}
+
+h4{
+    color: #222222;
+}
+
+
+.parallax-window {
+    min-height: 400px;
+    background: transparent;
+}
+
+section#contact *::-moz-placeholder { /* WebKit browsers */
+    color:white;
+    font-weight: bolder;
+     opacity: 1 !important;
+}
+section#contact{
+    background-image: url(../img/cv.jpg);
+     
+}
+
+section#contact .section-heading {
+  color: #E76B22;
+}
+
+section#contact .form-group textarea.form-control {
+  height: 236px;
+}
+
+section#contact .form-control{
+border-color: #222222;
+border-radius: 10px;
+background-color: #E76B22;
+opacity: 0.8;
+/* margin-right: 50px; */
+
+
+}
+
+
+button#envoi{ 
+    margin-right: 51px;
+    margin-top: 8px;
+   height: 60px;
+
+}
+
+button#envoi:hover,
+#envoi:focus,
+#envoi:active,
+#envoi.active,
+.open .dropdown-toggle.btn-primary {
+background-color: #E76B22;
+color: #FED136;
+border-color: #f6bf01;
+}
+
+section#interet{
+padding: 180px 0;    
+}
+
+section#services{
+    padding: 300px 0;
+}
+
+#filet{
+    border-bottom : 1px solid #000;
 }

@@ -101,39 +101,48 @@ $formation = $sql->fetchAll();
     </nav>
 
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text row">
-                <div class="intro-heading col-lg-7 col-lg-offset-5"><?php echo $utilisateur['prenom'].' ' .$utilisateur['nom'];?></div>
-                <div class="intro-lead-in col-lg-7 col-lg-offset-5 text-left">
-                    
-                    <div class="sp"><span >Développeuse</span></div>                 
-                    <div class="sp"><span >Intégratrice</span></div>
-                    <div class="sp"><span >Web</span></div>
-                </div>
-                <div>   
-                <a href="#services" class="page-scroll btn btn-xl" >En savoir plus</a>
+    <div class="parallax-window" data-parallax="scroll" data-image-src="front/img/frontcv.jpg">     
+        <header>
+            <div class="container">
+                <div class="intro-text row">
+                    <i class="light-switch icon-lightbulb"></i>
+                    <div class="hint preload">
+                        <i class="icon-info"></i>
+                        <div class="intro-heading col-lg-7 col-lg-offset-5"><?php echo $utilisateur['prenom'].' ' .$utilisateur['nom'];?></div>
+                        <div class="intro-lead-in col-lg-7 col-lg-offset-5 text-left">
+                            
+                            <div cclass="bouncer"><span >Développeuse</span></div>                 
+                            <div class="bouncer"><span >Intégratrice</span></div>
+                            <div  class="bouncer"><span >Web</span></div>
+                        </div>
+                        <div>   
+                        <a href="#services" class="page-scroll btn btn-xl" >En savoir plus</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+    </div>
 
     <!-- A propos-->
+
     <section id="services">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">A propos</h2>
+        
+                    <h2 class="section-heading">à propos</h2>
                     <h3 class="section-subheading text-muted">Mon profil en quelques mots.</h3>
                     <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. 
                     Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla
                     ensemble des mots texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles,</p>
                 </div>
-            </div>			
+            </div>          
         </div>
     </section>
-
-
+    </div>
+<div class="parallax-window" data-parallax="scroll" data-image-src="front/img/frontcv.jpg">  </div>
+     
 	<!-- Mes expériences -->
  	<section id="about" class="bg-light-gray">
         <div class="container">
@@ -174,7 +183,7 @@ $formation = $sql->fetchAll();
     </section>
  
 
-
+  <div class="parallax-window" data-parallax="scroll" data-image-src="front/img/frontcv.jpg"> </div>
  <!-- Mes compétences -->
      <section id="portfolio" >
         <div class="container">
@@ -210,17 +219,14 @@ $formation = $sql->fetchAll();
             </div>
         </div> 
     </section>
-
+ <div class="parallax-window" data-parallax="scroll" data-image-src="front/img/frontcv.jpg"> </div>
     <!-- Mes formations -->
     <section id="formation" class="bg-light-gray">
         <div class="container">
              <div class="row">
                 <div class="col-lg-12 text-center">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h2 class="section-heading">Mes formation</h2>
+                    
+                    <h2 class="section-heading">Mes formations</h2>
                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
             </div>
@@ -228,9 +234,9 @@ $formation = $sql->fetchAll();
             <?php
                 $i=0;
                 while($i<count($formation)){?>
-                <div class="col-md-6">
+                <div class="col-md-6" id="filet">
                 <h4 class="service-heading"><?= $formation[$i]['titre_f'].' - '.$formation[$i]['sous_titre_f']; ?></h4>
-                <p class="text-muted"><?= $formation[$i]['dates_f'].'<br>'.$formation[$i]['description_f'];?></p>
+                <p class="text-muted"><?= $formation[$i]['dates_f'].$formation[$i]['description_f'];?></p>
                 </div>
                  <?php
                  $i++;
@@ -238,9 +244,10 @@ $formation = $sql->fetchAll();
 
                  ?>
            
+
         </div>
     </section>
-
+ <div class="parallax-window" data-parallax="scroll" data-image-src="front/img/frontcv.jpg"> </div>
  <!-- Mes interets -->
      <section id="interet" >
         <div class="container">
@@ -292,38 +299,21 @@ $formation = $sql->fetchAll();
             </div>
         </div> 
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ <div class="parallax-window" data-parallax="scroll" data-image-src="front/img/frontcv.jpg"> </div>
 <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contact</h2>
-                    <h3 class="section-subheading text-muted">Besoin d'un devis pour un projet Web ?</h3>
+                    <h2 id="contact"class="section-heading">Contact</h2>
+                    <h3  id="contact1" class="section-subheading text-muted">Besoin d'un devis pour un projet Web ?</h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5 col-md-offset-1">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Votre nom *" id="name" required data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
@@ -337,7 +327,7 @@ $formation = $sql->fetchAll();
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <textarea class="form-control" placeholder="Votre message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
                                     <p class="help-block text-danger"></p>
@@ -346,7 +336,7 @@ $formation = $sql->fetchAll();
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Envoyer</button>
+                                <button id="envoi" type="submit" class="btn btn-xl">Envoyer</button>
                             </div>
                         </div>
                     </form>
@@ -406,7 +396,9 @@ $formation = $sql->fetchAll();
 
     <!-- Theme JavaScript -->
     <script src="front/js/agency.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="front/js/parallax.js-1.4.2/parallax.js"></script>
+    <script src="front/js/parallax.js"></script>
 </body>
 
 </html>
