@@ -104,19 +104,17 @@ $formation = $sql->fetchAll();
     <div class="parallax-window" data-parallax="scroll" data-image-src="front/img/frontcv.jpg">     
         <header>
             <div class="container">
-                <div class="intro-text row">
+                <div id="intro-text" class="intro-text row">
                     <i class="light-switch icon-lightbulb"></i>
-                    <div class="hint preload">
+                    <div id="blocnomposte"class="hint preload">
                         <i class="icon-info"></i>
-                        <div class="intro-heading col-lg-7 col-lg-offset-5"><?php echo $utilisateur['prenom'].' ' .$utilisateur['nom'];?></div>
-                        <div class="intro-lead-in col-lg-7 col-lg-offset-5 text-left">
-                            
-                            <div cclass="bouncer"><span >Développeuse</span></div>                 
-                            <div class="bouncer"><span >Intégratrice</span></div>
-                            <div  class="bouncer"><span >Web</span></div>
+                        <div  id="nomPrenom"class="intro-heading col-lg-12"><?php echo '<span id="houda">'.$utilisateur['prenom'].'</span>'.' ' .$utilisateur['nom'];?></div>
+                        <div id="poste" class="intro-lead-in col-lg-12">                           
+                            <span>Développeuse Intégratrice Web</span>                
                         </div>
                         <div>   
-                        <a href="#services" class="page-scroll btn btn-xl" >En savoir plus</a>
+                        <a href="#services" class="btn btn-circle page-scroll  " >
+                        <i class="fa fa-angle-double-down animated"></i></a>
                         </div>
                     </div>
                 </div>
@@ -125,7 +123,6 @@ $formation = $sql->fetchAll();
     </div>
 
     <!-- A propos-->
-
     <section id="services">
         <div class="container">
             <div class="row">
@@ -149,7 +146,7 @@ $formation = $sql->fetchAll();
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Experiences</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted">Polyvalente, je m'adapte rapidement.</h3>
                 </div>
             </div>
             <div class="row">
@@ -163,9 +160,9 @@ $formation = $sql->fetchAll();
                                 <div class="timeline-image">
                                     <img class="img-circle img-responsive" id="img_e" src="front/img/about/<?= $experience[$i]['img_e'];?>" alt="" style="width:160px;  height:160px;" >
                                 </div>
-                                <div class="timeline-panel">
+                                <div id="experiences" class="timeline-panel">
                                     <div class="timeline-heading">
-                                        <h4><?= $experience[$i]['dates_e']; ?></h4>
+                                        <h4><span id="date"><?= $experience[$i]['dates_e']; ?></span></h4>
                                             <h4 class="subheading"><?= $experience[$i]['titre_e'].' - '.$experience[$i]['sous_titre_e'];?></h4>
                                     </div>
                                     <div class="timeline-body">
@@ -311,25 +308,25 @@ $formation = $sql->fetchAll();
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <form name="sentMessage" id="contactForm" novalidate method="POST">
                         <div class="row">
                             <div class="col-md-5 col-md-offset-1">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Votre nom *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Votre nom *" name="nom" id="name" required data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Votre email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <input type="email" class="form-control" placeholder="Votre email *" name="email"  id="email" required data-validation-required-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Vos coordonnées téléphonique *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="tel" class="form-control" placeholder="Vos coordonnées téléphonique *"  name="telephone" id="phone" required data-validation-required-message="Please enter your phone number.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Votre message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <textarea class="form-control" placeholder="Votre message *" name="message" id="message" required data-validation-required-message="Please enter a message."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>

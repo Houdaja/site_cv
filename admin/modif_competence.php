@@ -34,8 +34,9 @@ if(isset($_GET['deconnect'])){
 		
 		$competence = addslashes($_POST['competence']);
 		$niveau = addslashes($_POST['niveau']);
+		$end = addslashes($_POST['end']);
 		$id_competence = $_POST['id_competence'];
-		$pdoCV->exec("UPDATE t_competences SET competence='$competence', niveau='$niveau' WHERE id_competence='$id_competence'");
+		$pdoCV->exec("UPDATE t_competences SET competence='$competence', niveau='$niveau', end='$end' WHERE id_competence='$id_competence'");
 
 			header('location: ../admin/competence.php'); //le header location pour revenir à la liste des compétences de l'utilisateur.
 		exit();	
@@ -46,27 +47,23 @@ $id_competence = $_GET['id_competence'];/// par l'id compétence et $_GET
 $sql= $pdoCV->query("SELECT * FROM t_competences WHERE id_competence = '$id_competence' ");
 $ligne_competence= $sql->fetch();
 
+/*die(var_dump($ligne_competence));*/
+
 ?>
 <?php include'haut.php';?>
 	<div class="contenuPrincipal">
 	<h2 class="h2"> Les compétences | modification </h2>
 		<form action="modif_competence.php" method="POST">
 		<legend>Modifier le champ souhaité : </legend>
-			<table class="tables" width="200px" border="1">
-				<tr>
-					<th>Compétence </th>				
-					<th>Niveau</th>				
-					<td>	
-					<input type="text" name="competence" size="50" value="<?php echo $ligne_competence['competence']; ?>" required>	
-					<input type="text" name="niveau" size="50" value="<?php echo $ligne_competence['niveau']; ?>" required>	
-					<input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">					
-					</td>
-				</tr>
-				<tr>	
-					<td colspan="2"><input type="submit" value="Mettre à jour"></td>
-				</tr>	
 			
-			</table>
+					<input type="text" name="competence" size="50" value="<?php echo $ligne_competence['competence']; ?>" required>	
+					<input type="text" name="niveau" size="50" value="<?php echo $ligne_competence['niveau']; ?>" required>
+					<select name="end">                   
+                        <option value="front" <?= ($ligne_competence['end'] == 'front') ? 'selected' : ''; ?>>Front</option>
+                        <option  value="back" <?= ($ligne_competence['end'] == 'back') ? 'selected' : ''; ?>>Back</option>
+                    </select> 	
+					<input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">					
+					<input type="submit" value="Mettre à jour">
 		</form>
 	</div>
 	<!-- Fin du form modification -->

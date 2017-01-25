@@ -31,10 +31,11 @@ if(isset($_POST['competence'])){ // On vérife si on a creer une nouvelle compé
     if($_POST['competence']!= ''){//si comptence n'est pas vide
     $competence = addslashes($_POST['competence']);
     $niveau = addslashes($_POST['niveau']);
+    $end = addslashes($_POST['end']);
 
     //Pour inserer une nouvelle compétence
     /* $insert = $pdoCv->query("INSERT INTO t_competences(id_competence,competences,id_utilisateur) VALUES('','$competence','1') ")*/
-    $insert = $pdoCV->exec(" INSERT INTO t_competences VALUES (NULL,'$competence', '$niveau', '1') ");
+    $insert = $pdoCV->exec(" INSERT INTO t_competences VALUES (NULL,'$competence', '$niveau', '$end', '1') ");
         header("location:../admin/competence.php");
          exit();      
     }// on ferle le if
@@ -66,6 +67,11 @@ if(isset($_GET['delete'])){
                     <input type="text" name="competence" id="competence" size="20" required>                          
                     <Label>Niveau</label>
                     <input type="text" name="niveau" id="niveau" size="20" required>                          
+                    <label>Spécificité</label>
+                     <select name="end">                   
+                        <option value="back">Back</option>
+                        <option value="front">Front</option>
+                    </select> 
                     <input type="submit" value"Insérer une compétences"><br><br>
                     </fieldset>       
                 </form>
@@ -77,12 +83,14 @@ if(isset($_GET['delete'])){
                 <tr>
                     <th>Compétences</th>
                     <th>Niveau</th>
+                    <th>Spécificité</th>
                     <th colspan="2">Opérations</th>
                 </tr>
                 <tr>
                     <?php while($resultat = $sql->fetch()){ ?>
                     <td><?php echo $resultat['competence']; ?></td>
                     <td><?php echo $resultat['niveau']; ?></td>
+                    <td><?php echo $resultat['end']; ?></td>
                     <td><a href="?delete=<?php echo $resultat['id_competence'];?>"><i class="fa fa-trash" aria-hidden="true"></i>
                         </a></td><!--lien qui envoi la supprision de la ligne -->
                     <td><a href="modif_competence.php?id_competence=<?php echo $resultat['id_competence'];?>"><i class="fa fa-pencil" aria-hidden="true"></i>
