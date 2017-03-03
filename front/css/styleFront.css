@@ -1,213 +1,237 @@
-.parallax-window {
-    min-height: 400px;
-    background: transparent;
+#home{
+	background: url(../img/frontcv.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	height: auto;
+	min-height: 710px;	
+	padding-top: 60px;
+	color: black;
 }
 
-/* ************************************** */
-/* ***************** NAV **************** */
-/* ************************************** */
-.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-color: #DD5322;
+.header-text.btn{
+	border: 1px solid #E1511D;
+	border-radius: 0;
+	padding: 10px 30px;
+	height: 100px;
 }
-
-.navbar-custom .nav li a, .navbar-custom .navbar-toggle {  
-    color: #000;
-    font-size:20px;
-    font-weight: bolder;
-}
-
-
-/* ************************************** */
-/* ************ HOUDA JAADAR ************ */
-/* ************************************** */
-header {
-    background: none;
-    
-}
-
-#nomPrenom{
-    
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 80px;
-    letter-spacing: 15px;
-    color : #000;
-      position: relative;
-    bottom: 108px;
-}
-
 
 #houda{
-text-transform: capitalize;
+	font-size: 50px;
+}
+.typed-cursor {
+ 
+    background:#E1511D;   
+}
+hr{
+	border-width: 3px;
+	border-color: #c59a6d;  
+	margin-top: 0px;
+	margin-bottom: 25px;
+}
+#trait{
+	border-width: 3px;
+	border-color: #E1511D;  
+	margin-top: 0px;
+	margin-bottom: 25px;
+}
+nav#menu span.fa.fa-bars { 
+    color: #E1511D;   
 }
 
-#intro-text{
-   margin-bottom: 100px;
+nav#menu span.fa.fa-bars:hover{
+	color: #383838;
 }
 
-*::-moz-selection {
-    text-shadow: none;
-    background: #fed136;
-    color: #DD5322;
+.close:hover{
+	background-color:#E1511D;
 }
-#poste{
-    color: #000;
-    font-size: 40px;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style :inherit;
-    padding-bottom: 100px;
+.navmenu-default .navmenu-nav > .active > a, .navbar-default .navbar-offcanvas .navmenu-nav > .active > a, .navmenu-default .navmenu-nav > .active > a:hover, .navbar-default .navbar-offcanvas .navmenu-nav > .active > a:hover, .navmenu-default .navmenu-nav > .active > a:focus, .navbar-default .navbar-offcanvas .navmenu-nav > .active > a:focus {
+    color: #E1511D;
+    background-color: transparent;
 }
 
-.intro-lead-in {
-  
-    letter-spacing: 5px;
-     position: relative;
-    bottom: 155px;
+.navmenu-default .navmenu-nav > li > a:hover, .navbar-default .navbar-offcanvas .navmenu-nav > li > a:hover, .navmenu-default .navmenu-nav > li > a:focus, .navbar-default .navbar-offcanvas .navmenu-nav > li > a:focus {
+    color: #E1511D;
+    background-color: transparent;
+    }
 
+
+#exp{
+	color: #E1511D;
+	font-weight: bolder;
 }
 
-/* #blocnomposte{
-    padding-top: 300px;
-} */
-
-/* ************************************** */
-/* **********BTN en savoir plus ******** */
-/* ************************************** */
-.btn-circle {
-color:#DF5521;
-width: 80px;
-height: 80px;
-margin-top:0;
-padding: 7px 16px;
-border: 2px solid black;
-border-radius: 100% !important;
-font-size: 40px;
-color: #E46720;
-background: transparent;
--webkit-transition: background 0.3s ease-in-out;
--moz-transition: background 0.3s ease-in-out;
-transition: background 0.3s ease-in-out;
+#description{
+	text-align: justify;
 }
-
-
-.btn-circle:hover,
-.btn-circle:focus {
-  outline: none;
-  color:#000;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-
-.sp{
-    padding-bottom: 15px;
+.team {
+    border: 1px solid#E1511D;
+	padding: 20px 20px;
+	height: 400px;
 
 }
 
-/* ************************************** */
-/* ***************TITRES********* ******** */
-/* ************************************** */
-h2{
-    color:#E76B22;
-}
-
-h3 .section-subheading{
-    color: #222222;
+h3{
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 h4{
-    color: #222222;
+	margin-bottom: 20px;
+}
+#description{
+	text-align: justify;
 }
 
-
-
-/* ************************************** */
-/* **************Formulaire ************** */
-/* ************************************** */
-section#contact *::-moz-placeholder { /* WebKit browsers */
-    color:white;
-    font-weight: bolder;
-     opacity: 1 !important;
-}
-section#contact{
-    background-image: url(../img/cv.jpg);
-     
+#competence{
+	padding-top: 60px;
+	padding-bottom: 60px;
 }
 
-section#contact .section-heading {
-  color: #E76B22;
+#clients{
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
-section#contact .form-group textarea.form-control {
-  height: 236px;
-}
-
-section#contact .form-control{
-border-color: #222222;
-border-radius: 10px;
-background-color: #E76B22;
-opacity: 0.8;
-/* margin-right: 50px; */
+#experience{
+	padding-top: 60px;
 
 
 }
 
-/* ************************************** */
-/* **********BTN en savoir plus ******** */
-/* ************************************** */
-button#envoi{ 
-    margin-right: 51px;
-    margin-top: 8px;
-   height: 60px;
+#formation{
+	padding-bottom: 60px;
 
 }
 
-button#envoi:hover,
-#envoi:focus,
-#envoi:active,
-#envoi.active,
-.open .dropdown-toggle.btn-primary {
-background-color: #E76B22;
-color: #FED136;
-border-color: #f6bf01;
-}
-
-
-/* ************************************** */
-/* ****************INTERET *************** */
-/* ************************************** */
-section#interet{
-padding: 180px 0;    
-}
-
-/* ************************************** */
-/* ************** A PROPOS ************* */
-/* ************************************** */
-section#services{
-    padding: 300px 0;
-}
-
-/* ************************************** */
-/* **********FORMATIONS ******** */
-/* ************************************** */
-#filet{
-    border-bottom : 1px solid #000;
-}
-
-
-/* ************************************** */
-/* **********EXPERIENCES ******** */
-/* ************************************** */
-#date{
-    background-color: #FEC503;
-    opacity: 0.5;
+#home a.down-btn span.fa.fa-angle-down {
+    font-size: 26px;
+    border: 2px solid #E1511D;
+    border-radius: 2px;
+    padding: 7px 5px;
+    position: relative;
+    margin-top: 100px;
+    color:#E1511D;
+    cursor: pointer;
 
 }
 
-.timeline > li.timeline-inverted > .timeline-panel{
-    padding-right: 0px;
-    padding-left: 0px;
+.service:hover > h4, .service:hover > span.fa {
+    color: #c59a6d;
+}
+.fa-cog {
+    font-size: 3em;
+}
+.fa-desktop{
+	font-size: 3em;
+}
+.fa-plus{
+	font-size: 3em;
+}
+button.btn.read-more-btn{
+	text-transform: uppercase;
+	background: #c59a6d;
+	color: #282f35;
+	word-spacing: 2px;
+	padding: 7px 30px;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #ffffff;
+	transition: all 0.5s;
+}
+button.btn.read-more-btn:hover{
+	background: #222222;
+	color: #ffffff;
+}
+
+button.btn.send-btn{
+	text-transform: uppercase;
+	background: #c59a6d;
+	color: #282f35;
+	padding: 15px 35px;
+	border-radius: 0;
+	font-size: 12px;
+	color: #ffffff;
+	transition: all 0.5s;
+}
+button.btn.send-btn:hover{
+	background: transparent;
+	border: 1px solid #c59a6d;
+	color: #ffffff;
+}
+
+#ad{
+	color: #c59a6d; 
+}
+
+
+a.down-btn span.fa.fa-angle-down {
+	margin-top: 30px;
+	margin-bottom: 40px;
+}
+
+.fa-film {
+    font-size: 3em;
+}
+.fa-trophy {
+    font-size: 3em;
+}
+.fa-cutlery {
+    font-size: 3em;
+}
+.fa-camera {
+    font-size: 3em;
+}
+
+h2{
+	color: #E1511D;
+}
+
+#overview-video {
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	text-align: center;
+}
+
+#overview-video .overlay{
+	background: rgba(34, 34, 34, 0.85);
+	height: auto;
+	min-height: 200px;
+	padding: 5% 0 ;
+	color: #ffffff;
+}
+
+#telechargement{
+	margin-top: 200px;
+	color:#C59A6D;
+	font-size: 17px;
+
+
+    }
+
+
+#interet{
+	margin-bottom: 50px;
+}
+#interet h2{
+	margin-top: 85px;
+}
+
+h4{
+	color: #E1511D;
+}
+
+.hover-bg .hover-text {
+  
+    opacity: 1;
 
 }
 
-strong {
-    color : #E77023;
-}
+.centre{
+	height:300px;;
+  }

@@ -1,0 +1,81 @@
+.buttons1 {
+  display: table;
+  height: 100%;
+  width: 100%;
+  margin-left:600px;
+}
+
+.container1 {
+  display: table-cell;
+  padding: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#abouton{
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 auto 2em;
+  max-width: 160px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100%;
+}
+@media (min-width: 400px) {
+  #abouton {
+    display: inline-block;
+    margin-right: 2.5em;
+  }
+  #abouton:nth-of-type(even) {
+    margin-right: 0;
+  }
+}
+@media (min-width: 600px) {
+  #abouton:nth-of-type(even) {
+    margin-right: 2.5em;
+  }
+  #abouton:nth-of-type(5) {
+    margin-right: 0;
+  }
+}
+.btn-1:hover {
+  text-decoration: none;
+}
+
+.btn-1 {
+  background: #C59A6D;
+  font-weight: 100;
+}
+.btn-1 svg {
+  height: 59px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.btn-1 rect {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 422, 0;
+}
+
+.btn-1:hover {
+  background: #af753b;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.btn-1:hover rect {
+  stroke-width: 5;
+  stroke-dasharray: 15, 310;
+  stroke-dashoffset: 48;
+  -webkit-transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
